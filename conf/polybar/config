@@ -1,0 +1,161 @@
+[colors]
+background = #aa00
+background-alt = #3d0s90
+foreground = #dfdfdf
+foreground-alt = #555
+primary = ${xrdb:color6:#222}
+secondary = ${xrdb:color3:#222}
+alert = #bd2c40
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+;offset-x = 5%
+;offset-y = 5%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 4
+padding-right = 4
+
+module-margin-left = 2
+module-margin-right = 0
+
+font-0 = fixed:pixelsize=12;1
+font-1 = uni font:fontformat=truetype:size=10:antialias=false;0
+font-2 = siji:pixelsize=12;1
+font-3 = FontAwesome:style=Solid:size=17;1
+font-4 = FontAwesome:style=Regular:size=12;4
+font-5 = Font-Awesome-5-Free-Solid:size17;1
+font-6 = Font-Awesome-5:style=Free-Solid:size=17;1
+font-7 = FontAwesome5Free:style=Solid:size=12;4
+font-8 = FontAwesome5Free:style=Regular:size=12;4
+font-9 = FontAwesome5Brands:style=Regular:size=12;4
+
+modules-left = i3 xwindow
+modules-center = date
+modules-right = pulseaudio battery
+
+tray-position = right
+tray-padding = 0
+tray-background = #aa00
+tray-maxsize = 20
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+bottom = false
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/date]
+type = internal/date
+interval = 0.5
+
+date = 
+date-alt = 
+
+time = %H:%M:%S | %m. %d. %Y
+time-alt = %H:%M:%S | %m. %d. %Y
+
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.secondary}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume = %percentage%%
+
+label-muted = muted 
+
+label-volume-foreground = ${root.foreground}
+label-muted-foreground = #666
+
+format-volume-underline = ${colors.primary}
+format-muted-underline = ${colors.secondary}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+time-format = %H:%M
+
+label-discharging = %percentage%%
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.secondary}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
